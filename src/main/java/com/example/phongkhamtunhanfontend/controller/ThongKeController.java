@@ -25,7 +25,7 @@ public class ThongKeController {
     @PostMapping("/benh")
     public String getThongKeBenh(Model model, @RequestParam(name="thang") String thang){
         try{
-            List<ThongKeBenh> listThongKe = Arrays.asList(rest.getForObject("http://localhost:8085/thongkebenh?thang="+thang, ThongKeBenh[].class));
+            List<ThongKeBenh> listThongKe = Arrays.asList(rest.getForObject("https://phongkhamserver.herokuapp.com/thongkebenh?thang="+thang, ThongKeBenh[].class));
             model.addAttribute("listthongkebenh",listThongKe);
             model.addAttribute("thang",thang);
         }catch (Exception e){

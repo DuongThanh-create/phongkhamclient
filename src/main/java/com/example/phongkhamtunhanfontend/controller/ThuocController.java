@@ -21,25 +21,25 @@ public class ThuocController {
     }
     @PostMapping("/them")
     public String create(Thuoc thuoc, Model model){
-        thuoc = rest.postForObject("http://localhost:8085/thuoc",thuoc, thuoc.getClass());
+        thuoc = rest.postForObject("https://phongkhamserver.herokuapp.com/thuoc",thuoc, thuoc.getClass());
         model.addAttribute("thuoc",thuoc);
         return "thuoc/thanhcong";
     }
     @GetMapping("/sua/{id}")
     public String getViewThuocById(@PathVariable Long id, Model model){
-        Thuoc thuoc = rest.getForObject("http://localhost:8085/thuoc/{id}",Thuoc.class,id);
+        Thuoc thuoc = rest.getForObject("https://phongkhamserver.herokuapp.com/thuoc/{id}",Thuoc.class,id);
         model.addAttribute("thuoc",thuoc);
         return "thuoc/suathuoc";
     }
     @PostMapping("/sua/{id}")
     public  String updateThuoc(Thuoc thuoc,Model model){
-        rest.put("http://localhost:8085/thuoc/{id}",thuoc,thuoc.getId());
+        rest.put("https://phongkhamserver.herokuapp.com/thuoc/{id}",thuoc,thuoc.getId());
         model.addAttribute("thuoc",thuoc);
         return "thuoc/thanhcong";
     }
     @GetMapping("/xoa/{id}")
     public String delete(@PathVariable Long id){
-        rest.delete("http://localhost:8085/thuoc/{id}",id);
+        rest.delete("https://phongkhamserver.herokuapp.com/thuoc/{id}",id);
         return "index";
     }
     @GetMapping("/timkiem")
@@ -49,13 +49,13 @@ public class ThuocController {
     }
     @PostMapping("/timkiem")
     public String ketquaTimKiem(@RequestParam(name="duLieu") String duLieu,@RequestParam(name="thuocTinh") String thuocTinh, Model model){
-        List<Thuoc> thuocs = Arrays.asList(rest.getForObject("http://localhost:8085/thuoc?duLieu="+duLieu+"&thuocTinh="+thuocTinh,Thuoc[].class));
+        List<Thuoc> thuocs = Arrays.asList(rest.getForObject("https://phongkhamserver.herokuapp.com/thuoc?duLieu="+duLieu+"&thuocTinh="+thuocTinh,Thuoc[].class));
         model.addAttribute("thuocs",thuocs);
         return "thuoc/timkiemthuoc";
     }
     @GetMapping("/all")
     public String getDanhSach(Model model){
-        List<Thuoc> thuocs = Arrays.asList(rest.getForObject("http://localhost:8085/thuoc/all",Thuoc [].class));
+        List<Thuoc> thuocs = Arrays.asList(rest.getForObject("https://phongkhamserver.herokuapp.com/thuoc/all",Thuoc [].class));
         model.addAttribute("thuocs",thuocs);
         return "thuoc/danhsach";
     }

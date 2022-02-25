@@ -21,25 +21,25 @@ public class YTaController {
     }
     @PostMapping("/them")
     public String create(YTa yTa, Model model){
-        yTa = rest.postForObject("http://localhost:8085/yta",yTa, yTa.getClass());
+        yTa = rest.postForObject("https://phongkhamserver.herokuapp.com/yta",yTa, yTa.getClass());
         model.addAttribute("yta",yTa);
         return "yta/thanhcong";
     }
     @GetMapping("/sua/{id}")
     public String getViewYTaById(@PathVariable Long id, Model model){
-        YTa yTa = rest.getForObject("http://localhost:8085/yta/{id}",YTa.class,id);
+        YTa yTa = rest.getForObject("https://phongkhamserver.herokuapp.com/yta/{id}",YTa.class,id);
         model.addAttribute("yta",yTa);
         return "yta/suayta";
     }
     @PostMapping("/sua/{id}")
     public  String updateYTa(YTa yTa,Model model){
-        rest.put("http://localhost:8085/yta/{id}",yTa,yTa.getId());
+        rest.put("https://phongkhamserver.herokuapp.com/yta/{id}",yTa,yTa.getId());
         model.addAttribute("yta",yTa);
         return "yta/thanhcong";
     }
     @GetMapping("/xoa/{id}")
     public String delete(@PathVariable Long id){
-        rest.delete("http://localhost:8085/yta/{id}",id);
+        rest.delete("https://phongkhamserver.herokuapp.com/yta/{id}",id);
         return "redirect:/yta/all";
     }
     @GetMapping("/timkiem")
@@ -49,13 +49,13 @@ public class YTaController {
     }
     @PostMapping("/timkiem")
     public String ketquaTimKiem(@RequestParam(name="duLieu") String duLieu,@RequestParam(name="thuocTinh") String thuocTinh, Model model){
-        List<YTa> yTas = Arrays.asList(rest.getForObject("http://localhost:8085/yta?duLieu="+duLieu+"&thuocTinh="+thuocTinh,YTa[].class));
+        List<YTa> yTas = Arrays.asList(rest.getForObject("https://phongkhamserver.herokuapp.com/yta?duLieu="+duLieu+"&thuocTinh="+thuocTinh,YTa[].class));
         model.addAttribute("ytas",yTas);
         return "yta/timkiemyta";
     }
     @GetMapping("/all")
     public String getDanhSach(Model model){
-        List<YTa> ytas = Arrays.asList(rest.getForObject("http://localhost:8085/yta/all",YTa [].class));
+        List<YTa> ytas = Arrays.asList(rest.getForObject("https://phongkhamserver.herokuapp.com/yta/all",YTa [].class));
         model.addAttribute("ytas",ytas);
         return "yta/danhsach";
     }

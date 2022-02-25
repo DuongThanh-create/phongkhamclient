@@ -21,11 +21,11 @@ public class LanKhamController {
     private RestTemplate rest = new RestTemplate();
     @GetMapping("/them")
     public String getThemLanKham(Model model){
-        List<BacSy> bacSys = Arrays.asList(rest.getForObject("http://localhost:8085/bacsy/all",BacSy[].class));
-        List<YTa> yTas = Arrays.asList(rest.getForObject("http://localhost:8085/yta/all",YTa[].class));
-        List<BenhNhan> benhNhans = Arrays.asList(rest.getForObject("http://localhost:8085/benhnhan/all",BenhNhan[].class));
-        List<Thuoc> thuocs = Arrays.asList(rest.getForObject("http://localhost:8085/thuoc/all",Thuoc[].class));
-        List<Benh> benhs = Arrays.asList(rest.getForObject("http://localhost:8085/benh/all",Benh[].class));
+        List<BacSy> bacSys = Arrays.asList(rest.getForObject("https://phongkhamserver.herokuapp.com/bacsy/all",BacSy[].class));
+        List<YTa> yTas = Arrays.asList(rest.getForObject("https://phongkhamserver.herokuapp.com/yta/all",YTa[].class));
+        List<BenhNhan> benhNhans = Arrays.asList(rest.getForObject("https://phongkhamserver.herokuapp.com/benhnhan/all",BenhNhan[].class));
+        List<Thuoc> thuocs = Arrays.asList(rest.getForObject("https://phongkhamserver.herokuapp.com/thuoc/all",Thuoc[].class));
+        List<Benh> benhs = Arrays.asList(rest.getForObject("https://phongkhamserver.herokuapp.com/benh/all",Benh[].class));
         model.addAttribute("bacsys",bacSys);
         model.addAttribute("ytas",yTas);
         model.addAttribute("benhnhans",benhNhans);
@@ -76,7 +76,7 @@ public class LanKhamController {
         lanKham.setYTa(yTa);
         lanKham.setBenh(benh);
         lanKham.setBenhNhan(benhNhan);
-        LanKham lK = rest.postForObject("http://localhost:8085/lankham",lanKham,LanKham.class);
+        LanKham lK = rest.postForObject("https://phongkhamserver.herokuapp.com/lankham",lanKham,LanKham.class);
         model.addAttribute("lankham",lK);
         return "lankham/thanhcong";
     }
@@ -87,23 +87,23 @@ public class LanKhamController {
     }
     @PostMapping("/timkiem")
     public String ketquaTimKiem(@RequestParam(name="maLK") String maLK, Model model){
-        LanKham lanKham = rest.getForObject("http://localhost:8085/lankham?maLK="+maLK,LanKham.class);
+        LanKham lanKham = rest.getForObject("https://phongkhamserver.herokuapp.com/lankham?maLK="+maLK,LanKham.class);
         model.addAttribute("lankham",lanKham);
         return "lankham/timkiemlankham";
     }
     @GetMapping("/xoa/{id}")
     public String delete(@PathVariable Long id){
-        rest.delete("http://localhost:8085/lankham/{id}",id);
+        rest.delete("https://phongkhamserver.herokuapp.com/lankham/{id}",id);
         return "index";
     }
     @GetMapping("/sua/{id}")
     public String getViewLanKhamById( @PathVariable Long id,Model model){
-        LanKham lanKham = rest.getForObject("http://localhost:8085/lankham/{id}",LanKham.class,id);
-        List<BacSy> bacSys = Arrays.asList(rest.getForObject("http://localhost:8085/bacsy/all",BacSy[].class));
-        List<YTa> yTas = Arrays.asList(rest.getForObject("http://localhost:8085/yta/all",YTa[].class));
-        List<BenhNhan> benhNhans = Arrays.asList(rest.getForObject("http://localhost:8085/benhnhan/all",BenhNhan[].class));
-        List<Thuoc> thuocs = Arrays.asList(rest.getForObject("http://localhost:8085/thuoc/all",Thuoc[].class));
-        List<Benh> benhs = Arrays.asList(rest.getForObject("http://localhost:8085/benh/all",Benh[].class));
+        LanKham lanKham = rest.getForObject("https://phongkhamserver.herokuapp.com/lankham/{id}",LanKham.class,id);
+        List<BacSy> bacSys = Arrays.asList(rest.getForObject("https://phongkhamserver.herokuapp.com/bacsy/all",BacSy[].class));
+        List<YTa> yTas = Arrays.asList(rest.getForObject("https://phongkhamserver.herokuapp.com/yta/all",YTa[].class));
+        List<BenhNhan> benhNhans = Arrays.asList(rest.getForObject("https://phongkhamserver.herokuapp.com/benhnhan/all",BenhNhan[].class));
+        List<Thuoc> thuocs = Arrays.asList(rest.getForObject("https://phongkhamserver.herokuapp.com/thuoc/all",Thuoc[].class));
+        List<Benh> benhs = Arrays.asList(rest.getForObject("https://phongkhamserver.herokuapp.com/benh/all",Benh[].class));
         model.addAttribute("bacsys",bacSys);
         model.addAttribute("ytas",yTas);
         model.addAttribute("benhnhans",benhNhans);
@@ -127,10 +127,10 @@ public class LanKhamController {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        BacSy bacSy = rest.getForObject("http://localhost:8085/bacsy/{id}",BacSy.class,idBS);
-        YTa yTa = rest.getForObject("http://localhost:8085/yta/{id}",YTa.class,idYTa);
-        BenhNhan benhNhan = rest.getForObject("http://localhost:8085/benhnhan/{id}",BenhNhan.class,idBN);
-        Benh benh = rest.getForObject("http://localhost:8085/benh/{id}",Benh.class,idBenh);
+        BacSy bacSy = rest.getForObject("https://phongkhamserver.herokuapp.com/bacsy/{id}",BacSy.class,idBS);
+        YTa yTa = rest.getForObject("https://phongkhamserver.herokuapp.com/yta/{id}",YTa.class,idYTa);
+        BenhNhan benhNhan = rest.getForObject("https://phongkhamserver.herokuapp.com/benhnhan/{id}",BenhNhan.class,idBN);
+        Benh benh = rest.getForObject("https://phongkhamserver.herokuapp.com/benh/{id}",Benh.class,idBenh);
         if (idThuocs!=null) {
             DieuTri dieuTri = new DieuTri();
             dieuTri.setId(idDieuTri);
@@ -138,7 +138,7 @@ public class LanKhamController {
             dieuTri.setDieuTri_Thuocs(dts);
             for (int i = 0; i < idThuocs.length; i++) {
                 DieuTri_Thuoc dieuTri_thuoc = new DieuTri_Thuoc();
-                Thuoc thuoc = rest.getForObject("http://localhost:8085/thuoc/{id}",Thuoc.class,idThuocs[i]);
+                Thuoc thuoc = rest.getForObject("https://phongkhamserver.herokuapp.com/thuoc/{id}",Thuoc.class,idThuocs[i]);
                 dieuTri_thuoc.setThuoc(thuoc);
                 dieuTri_thuoc.setSoLuong(soLuongs[i]);
                 dts.add(dieuTri_thuoc);
@@ -152,7 +152,7 @@ public class LanKhamController {
         lanKham.setBenh(benh);
         lanKham.setBenhNhan(benhNhan);
         lanKham.setId(id);
-        rest.put("http://localhost:8085/lankham/{id}",lanKham,id);
+        rest.put("https://phongkhamserver.herokuapp.com/lankham/{id}",lanKham,id);
         model.addAttribute("lankham",lanKham);
         return "lankham/thanhcong";
     }
@@ -163,7 +163,7 @@ public class LanKhamController {
     }
     @PostMapping("/all")
     public String getDanhSach(Model model,@RequestParam(name="ngaybatdau") String ngaybatdau, @RequestParam(name="ngayketthuc") String ngayketthuc){
-        List<LanKham> lanKhams = Arrays.asList(rest.getForObject("http://localhost:8085/lankham/all?ngaybatdau="+ngaybatdau+"&ngayketthuc="+ngayketthuc,LanKham[].class));
+        List<LanKham> lanKhams = Arrays.asList(rest.getForObject("https://phongkhamserver.herokuapp.com/lankham/all?ngaybatdau="+ngaybatdau+"&ngayketthuc="+ngayketthuc,LanKham[].class));
         model.addAttribute("lankhams",lanKhams);
         model.addAttribute("ngaybatdau",ngaybatdau);
         model.addAttribute("ngayketthuc",ngayketthuc);
@@ -171,7 +171,7 @@ public class LanKhamController {
     }
     @GetMapping("/chitiet/{id}")
     public String getLanKham(@PathVariable Long id,Model model){
-        LanKham lanKham = rest.getForObject("http://localhost:8085/lankham/{id}",LanKham.class,id);
+        LanKham lanKham = rest.getForObject("https://phongkhamserver.herokuapp.com/lankham/{id}",LanKham.class,id);
         model.addAttribute("lankham",lanKham);
         return "lankham/chitiet";
     }

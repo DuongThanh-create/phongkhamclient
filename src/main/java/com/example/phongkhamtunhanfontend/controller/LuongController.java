@@ -19,7 +19,7 @@ public class LuongController {
     private RestTemplate rest = new RestTemplate();
     @PostMapping
     public String getLuong(@RequestParam(name="thang") String thang, Model model){
-        List<Luong> luongs = Arrays.asList(rest.getForObject("http://localhost:8085/luong?thang="+thang,Luong[].class));
+        List<Luong> luongs = Arrays.asList(rest.getForObject("https://phongkhamserver.herokuapp.com/luong?thang="+thang,Luong[].class));
         model.addAttribute("luongs",luongs);
         model.addAttribute("thang",thang);
         return "luong/tinhluong";
