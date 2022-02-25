@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/danhsachBN_YT.css">
+    <link rel="stylesheet" href="/css/timkiem.css">
+    <title>Phong Kham</title>
+</head>
+
+<body>
+<div class="container">
+    <div class="grid">
+        <div th:replace="fragments/header.html :: header"></div>
+        <div class="row">
+            <div th:replace="fragments/navigation.html :: navigation"></div>
+            <div class="col-sm-10">
+                <div class="content">
+                    <h4> Tìm Kiếm Thuốc</h4>
+                    <form action="" method="post" class="form_timkiem">
+                        <div>
+                            <select name="thuocTinh">
+                                <option value="maTH" >Mã Thuốc</option>
+                                <option value="donGia" >Đơn Giá</option>
+                                <option value="tenThuoc" >Tên Thuốc</option>
+                            </select>
+                            <input type="text" name="duLieu" placeholder="Nhập mã dữ liệu">
+                            <input type="submit" value="Tim Kiếm">
+                        </div>
+                    </form>
+
+                    <th:block th:if ="${thuocs}">
+                        <h4> Danh Sách Thuốc Trong Phòng Khám</h4>
+                        <table style="width:100%">
+                            <tr class = "table_header">
+                                <th>ID Thuốc</th>
+                                <th>Mã Thuốc</th>
+                                <th>Đơn Giá</th>
+                                <th>Tên Thuốc</th>
+                                <th></th>
+                            </tr>
+                            <th:block th:each="thuoc : ${thuocs}">
+                                <tr class = "table_row">
+                                    <td th:text="${thuoc.id}"></td>
+                                    <td th:text="${thuoc.maTH}"></td>
+                                    <td th:text="${thuoc.donGia}"></td>
+                                    <td th:text="${thuoc.tenThuoc}"></td>
+                                    <td>
+                                        <a th:href="@{'/thuoc/sua/'+${thuoc.id}}">Sủa</a>
+                                        <a th:href="@{'/thuoc/xoa/'+${thuoc.id}}">Xóa</a>
+                                    </td>
+                                </tr>
+                            </th:block>
+                        </table>
+                    </th:block>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/base.js"></script>
+</body>

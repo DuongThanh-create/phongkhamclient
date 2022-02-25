@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/danhsachLK.css">
+    <title>Phong Kham</title>
+</head>
+
+<body>
+<div class="container">
+    <div class="grid">
+        <div th:replace="fragments/header.html :: header"></div>
+        <div class="row">
+            <div th:replace="fragments/navigation.html :: navigation"></div>
+            <div class="col-sm-10">
+                <div class="content">
+                    <form method="post" th:action="@{/lankham/all}">
+                        <div class="date_form">
+                            <span class="lable_value">Ngày Bắt Đầu:</span>
+                            <th:block th:if="${ngaybatdau} == null">
+                                <input type="date" name="ngaybatdau" value="2020-01-01">
+                            </th:block>
+                            <th:block th:if="${ngaybatdau}">
+                                <input type="date" name="ngaybatdau" th:value="${ngaybatdau}">
+                            </th:block>
+                        </div>
+                        <div class="date_form">
+                            <th:block th:if="${ngayketthuc} == null">
+                                <input type="date" name="ngayketthuc" value="2020-01-01">
+                            </th:block>
+                            <th:block th:if="${ngayketthuc}">
+                                <input type="date" name="ngayketthuc" th:value="${ngayketthuc}">
+                            </th:block>
+                        </div>
+                        <input class="input_submit" type="submit" value="Tìm Kiếm">
+                    </form>
+
+                    <th:block th:if ="${lankhams}">
+                        <h4> Danh Sách Lần Khám Tìm Kiếm</h4>
+                        <table style="width:100%">
+                            <tr class = "table_header">
+                                <th>Mã Lần Khám</th>
+                                <th>Tên Bác Sỹ</th>
+                                <th>Tên Y Tá</th>
+                                <th>Tên Bệnh Nhân</th>
+                                <th>Tên Bệnh</th>
+                                <th>Ngày Vào Viện</th>
+                                <th>Ngày Ra Viện</th>
+                                <th></th>
+                            </tr>
+                            <th:block th:each="lankham : ${lankhams}">
+                                <tr class = "table_row">
+                                    <td th:text="${lankham.maLanKham}"></td>
+                                    <td th:text="${lankham.getBacSy().hoTen}"></td>
+                                    <td th:text="${lankham.getYTa().hoTen}"></td>
+                                    <td th:text="${lankham.getBenhNhan().hoTen}"></td>
+                                    <td th:text="${lankham.getBenh().benh}"></td>
+                                    <td th:text="${#dates.format(lankham.ngayVaoVien, 'yyyy-MM-dd')}"></td>
+                                    <td th:text="${#dates.format(lankham.ngayRaVien, 'yyyy-MM-dd')}"></td>
+                                    <td>
+                                        <a th:href="@{'/lankham/chitiet/'+${lankham.id}}">Xem Chi Tiết</a>
+                                    </td>
+                                </tr>
+                            </th:block>
+                        </table>
+                    </th:block>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="/js/base.js"></script>
+</body>

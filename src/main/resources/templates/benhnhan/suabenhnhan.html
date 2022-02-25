@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/form.css">
+    <title>Phong Kham</title>
+</head>
+
+<body>
+<div class="container">
+    <div class="grid">
+        <div th:replace="fragments/header.html :: header"></div>
+        <div class="row">
+            <div th:replace="fragments/navigation.html :: navigation"></div>
+            <div class="col-sm-10">
+                <div class="content">
+                    <h4> Sửa Bệnh Nhân</h4>
+                    <form th:action="@{'/benhnhan/sua/'+${benhnhan.id}}" th:method="post" th:object="${benhnhan}">
+                        <div class="lable_value">Mã Bệnh Nhân:</div>
+                        <div class="input_value">
+                            <input type="text" name="" th:field="*{maBN}" th:value="${benhnhan.maBN}">
+                        </div>
+                        <div class="lable_value">Họ Tên:</div>
+                        <div class="input_value">
+                            <input type="text" name="" th:field="*{hoTen}" th:value="${benhnhan.hoTen}">
+                        </div>
+                        <div class="lable_value">Địa Chỉ:</div>
+                        <div class="input_value">
+                            <input type="text" name="" th:field="*{diaChi}" th:value="${benhnhan.diaChi}">
+                        </div>
+                        <div class="lable_value">Ngày Sinh:</div>
+                        <div class="input_value">
+                            <input type="date"  name="ngaySinh" th:value="${#dates.format(benhnhan.getNgaySinh(), 'yyyy-MM-dd')}">
+                        </div>
+                        <div class="lable_value">Chứng minh thư:</div>
+                        <div class="input_value">
+                            <input type="text" name="" th:field="*{cmt}" th:value="${benhnhan.cmt}">
+                        </div>
+                        <div class="lable_value">Số điện thoại:</div>
+                        <div class="input_value">
+                            <input type="text" name="" th:field="*{sdt}" th:value="${benhnhan.sdt}">
+                        </div>
+                        <div class="input_submit">
+                            <input type="submit" value="Cập Nhật">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="/js/base.js"></script>
+</body>

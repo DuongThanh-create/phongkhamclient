@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/thanhcong.css">
+    <link rel="stylesheet" href="/css/timkiem.css">
+    <title>Phong Kham</title>
+</head>
+
+<body>
+<div class="container">
+    <div class="grid">
+        <div th:replace="fragments/header.html :: header"></div>
+        <div class="row">
+            <div th:replace="fragments/navigation.html :: navigation"></div>
+            <div class="col-sm-10">
+                <div class="content">
+                    <h4>Thống Kê Bệnh</h4>
+                    <form action="" method="post" class="form_timkiem">
+                        <div>
+                            <input type="text" name="thang" placeholder="Nhập yyyy-MM">
+                            <input type="submit" value="Thống Kê">
+                        </div>
+                    </form>
+
+                    <th:block th:if="${listthongkebenh}">
+                        <h5 th:text="'Tháng '+${thang}"></h5>
+                        <table>
+                            <tr>
+                                <th>Bệnh Mắc Trong Tháng</th>
+                                <th>Số Lần Mắc</th>
+                            </tr>
+                            <th:block th:each="thongkebenh : ${listthongkebenh}">
+                                <tr>
+                                    <td th:text="${thongkebenh.getBenh().benh}">"</td>
+                                    <td th:text="${thongkebenh.soLuong}"></td>
+                                </tr>
+                            </th:block>
+                        </table>
+                    </th:block>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/base.js"></script>
+</body>

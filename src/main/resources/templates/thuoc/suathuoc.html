@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/form.css">
+    <title>Phong Kham</title>
+</head>
+
+<body>
+<div class="container">
+    <div class="grid">
+        <div th:replace="fragments/header.html :: header"></div>
+        <div class="row">
+            <div th:replace="fragments/navigation.html :: navigation"></div>
+            <div class="col-sm-10">
+                <div class="content">
+                    <h4> Sửa Thuốc</h4>
+                    <form th:action="@{'/thuoc/sua/'+${thuoc.id}}" th:method="post" th:object="${thuoc}">
+                        <div class="lable_value">Mã Thuốc:</div>
+                        <div class="input_value">
+                            <input type="text" name="" th:field="*{maTH}" th:value="${thuoc.tenThuoc}">
+                        </div>
+                        <div class="lable_value">Tên Thuốc:</div>
+                        <div class="input_value">
+                            <input type="text" name="" th:field="*{tenThuoc}" th:value="${thuoc.tenThuoc}">
+                        </div>
+                        <div class="lable_value">Đơn Giá:</div>
+                        <div class="input_value">
+                            <input type="text" name="" th:field="*{donGia}" th:value="${thuoc.donGia}">
+                        </div>
+                        <div class="input_submit">
+                            <input type="submit" value="Cập Nhật">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="/js/base.js"></script>
+</body>

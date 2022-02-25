@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/lankham/lankham.css">
+    <title>Phong Kham</title>
+</head>
+
+<body>
+<div class="container">
+    <div class="grid">
+        <div th:replace="fragments/header.html :: header"></div>
+        <div class="row">
+            <div th:replace="fragments/navigation.html :: navigation"></div>
+            <div class="col-sm-10">
+                <div class="content">
+                    <h4> Thêm Lần Khám</h4>
+                    <form th:action="@{'/lankham/sua/'+${lankham.id}}" th:method="post">
+                        <div class="lable_value">Mã Lần Khám:</div>
+                        <div class="input_value">
+                            <input type="text" name="malankham" th:value="${lankham.maLanKham}">
+                        </div>
+                        <div class="lable_value">Ngày Vào Viện:</div>
+                        <div class="input_value">
+                            <input type="date" name="ngayvaovien" th:value="${#dates.format(lankham.getNgayVaoVien(), 'yyyy-MM-dd')}">
+                        </div>
+                        <div class="lable_value">Ngày Ra Viện:</div>
+                        <div class="input_value">
+                            <input type="date" name="ngayravien" th:value="${#dates.format(lankham.getNgayRaVien(), 'yyyy-MM-dd')}">
+                        </div>
+                        <div class="lable_value">Chọn Bác Sỹ:</div>
+                        <div class="input_value">
+                            <select name="bacsy">
+                                <th:block th:each="bacsy : ${bacsys}">
+                                    <th:block th:if="${bacsy.id} != ${lankham.getBacSy().id}">
+                                        <option th:value="${bacsy.id}" th:text="${bacsy.hoTen}"></option>
+                                    </th:block>
+                                    <th:block th:if="${bacsy.id} == ${lankham.getBacSy().id}">
+                                        <option th:value="${bacsy.id}" th:text="${bacsy.hoTen}" selected></option>
+                                    </th:block>
+                                </th:block>
+                            </select>
+                        </div>
+                        <div class="lable_value">Chọn Y Tá:</div>
+                        <div class="input_value">
+                            <select name="yta">
+                                <th:block th:each="yta : ${ytas}">
+                                    <th:block th:if="${yta.id} != ${lankham.getYTa().id}">
+                                        <option th:value="${yta.id}" th:text="${yta.hoTen}"></option>
+                                    </th:block>
+                                    <th:block th:if="${yta.id} == ${lankham.getYTa().id}">
+                                        <option th:value="${yta.id}" th:text="${yta.hoTen}" selected></option>
+                                    </th:block>
+                                </th:block>
+                            </select>
+                        </div>
+                        <div class="lable_value">Chọn Bệnh Nhân:</div>
+                        <div class="input_value">
+                            <select name="benhnhan">
+                                <th:block th:each="benhnhan : ${benhnhans}">
+                                    <th:block th:if="${benhnhan.id} != ${lankham.getBenhNhan().id}">
+                                        <option th:value="${benhnhan.id}" th:text="${benhnhan.maBN}"></option>
+                                    </th:block>
+                                    <th:block th:if="${benhnhan.id} == ${lankham.getBenhNhan().id}">
+                                        <option th:value="${benhnhan.id}" th:text="${benhnhan.maBN}" selected></option>
+                                    </th:block>
+                                </th:block>
+                            </select>
+                        </div>
+                        <div class="lable_value">Chọn Bệnh:</div>
+                        <div class="input_value">
+                            <select name="benh">
+                                <th:block th:each="benh : ${benhs}">
+                                    <th:block th:if="${benh.id} != ${lankham.getBenh().id}">
+                                        <option th:value="${benh.id}" th:text="${benh.benh}"></option>
+                                    </th:block>
+                                    <th:block th:if="${benh.id} == ${lankham.getBenh().id}">
+                                        <option th:value="${benh.id}" th:text="${benh.benh}" selected></option>
+                                    </th:block>
+                                </th:block>
+                            </select>
+                        </div>
+                        <div class="lable_value">Phần Điều Trị:</div>
+                        <div>
+                            <span class="value_thuoc_name">Chọn thuốc:</span>
+                            <span class="value_thuoc">Số Lượng</span>
+                        </div>
+                        <div>
+                            <select name="thuoc" class="value_thuoc_name thuoc">
+                                <th:block th:each="thuoc : ${thuocs}">
+                                    <option th:value="${thuoc.id}" th:text="${thuoc.tenThuoc}"></option>
+                                </th:block>
+                            </select>
+                            <input type="text" class="value_thuoc so_luong">
+                            <span class="add button">Add</span>
+                        </div>
+                        <div class="dsthuoc">
+                            <th:block th:if = "${lankham.getDieuTri()} !=null">
+                                <input type="text" name="iddieutri" th:value="${lankham.getDieuTri().id}"  hidden>
+                                <th:block th:each="dtt : ${lankham.getDieuTri().getDieuTri_Thuocs()}">
+                                    <div>
+                                        <input type="text" name="idthuocs" th:value="${dtt.getThuoc().id}" hidden>
+                                        <input type="text" name="soluongs" th:value="${dtt.soLuong}" hidden>
+                                        <span class="value_thuoc_name" th:text="${dtt.getThuoc().tenThuoc}"></span>
+                                        <span class="value_thuoc" th:text="${dtt.soLuong}"></span>
+                                        <span class="button delete">Delete</span>
+                                    </div>
+                                </th:block>
+                            </th:block>
+                        </div>
+                        <div  class="value_thuoc_name">Cách Dùng:</div>
+                        <div class="input_value">
+                            <th:block th:if="${lankham.getDieuTri()} != null">
+                                <textarea name="cachdung" rows="4" th:text="${lankham.getDieuTri().cachDung}"></textarea>
+                            </th:block>
+                            <th:block th:if="${lankham.getDieuTri()} == null">
+                                <textarea name="cachdung" rows="4"></textarea>
+                            </th:block>
+                        </div>
+                        <div class="input_submit">
+                            <input type="submit" value="Submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="/js/base.js"></script>
+<script src="/js/lankham/lankham.js"></script>
+</body>

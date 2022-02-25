@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/thanhcong.css">
+    <title>Phong Kham</title>
+</head>
+
+<body>
+<div class="container">
+    <div class="grid">
+        <div th:replace="fragments/header.html :: header"></div>
+        <div class="row">
+            <div th:replace="fragments/navigation.html :: navigation"></div>
+            <div class="col-sm-10">
+                <div class="content">
+                    <h4> THÊM Thuốc Thành Công</h4>
+
+                    <div>
+                        <span class="label_item">Mã Thuốc:</span>
+                        <span class="value_item" th:text="${thuoc.maTH}"></span>
+                    </div>
+                    <div>
+                        <span class="label_item">Tên Thuốc:</span>
+                        <span class="value_item" th:text="${thuoc.tenThuoc}"></span>
+                    </div>
+                    <div>
+                        <span class="label_item">Đơn Giá:</span>
+                        <span class="value_item" th:text="${thuoc.donGia}"></span>
+                    </div>
+                    <div>
+                        <a class = "a_submit" th:href="@{'/thuoc/sua/'+${thuoc.id}}">Sửa</a>
+                        <a class = "a_submit" th:href="@{'/thuoc/xoa/'+${thuoc.id}}">Xóa</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/base.js"></script>
+</body>

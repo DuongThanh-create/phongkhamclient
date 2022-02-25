@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/form.css">
+    <title>Phong Kham</title>
+</head>
+
+<body>
+<div class="container">
+    <div class="grid">
+        <div th:replace="fragments/header.html :: header"></div>
+        <div class="row">
+            <div th:replace="fragments/navigation.html :: navigation"></div>
+            <div class="col-sm-10">
+                <div class="content">
+                    <h4> THÊM BÁC SỸ</h4>
+                    <form th:action="@{/bacsy/them}" th:method="post" th:object="${bacsy}">
+                        <div class="lable_value">Mã Bác Sỹ:</div>
+                        <div class="input_value">
+                            <input type="text" name="" th:field="*{maNV}">
+                        </div>
+                        <div class="lable_value">Họ Tên:</div>
+                        <div class="input_value">
+                            <input type="text" name="" th:field="*{hoTen}">
+                        </div>
+                        <div class="lable_value">Địa Chỉ:</div>
+                        <div class="input_value">
+                            <input type="text" name="" th:field="*{diaChi}">
+                        </div>
+                        <div class="lable_value">Trình Độ:</div>
+                        <div class="input_value">
+                            <input type="text" name="" th:field="*{trinhDo}">
+                        </div>
+                        <div class="lable_value">Chuyên Môn:</div>
+                        <div class="input_value">
+                            <input type="text" name="" th:field="*{chuyenMon}">
+                        </div>
+                        <div class="lable_value">Thâm Niên:</div>
+                        <div class="input_value">
+                            <input type="text" name="" th:field="*{thamNien}">
+                        </div>
+                        <div class="lable_value">Ngày Sinh:</div>
+                        <div class="input_value">
+                            <input type="date" th:value="2000-01-01" name="ngaySinh">
+                        </div>
+                        <div class="lable_value">Chứng minh thư:</div>
+                        <div class="input_value">
+                            <input type="text" name="" th:field="*{cmt}">
+                        </div>
+                        <div class="lable_value">Số điện thoại:</div>
+                        <div class="input_value">
+                            <input type="text" name="" th:field="*{sdt}">
+                        </div>
+                        <div class="input_submit">
+                            <input type="submit" value="Submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="/js/base.js"></script>
+</body>

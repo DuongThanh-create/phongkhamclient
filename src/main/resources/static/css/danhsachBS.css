@@ -1,0 +1,139 @@
+* {
+    box-sizing: inherit;
+}
+:root {
+    --background-color1:rgb(102, 211, 250);
+    --categeory:rgba(3, 37, 76,0.7);
+    --background-color2:rgb(24, 123, 205);
+    --category-list:rgba(17, 103, 177,0.9);
+}
+html {
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    font-family: 'Roboto',sans-serif;
+    box-sizing: border-box;
+}
+body {
+    background-image:  linear-gradient(70deg,rgba(102, 211, 250,0.5),rgba(24, 123, 205,0.5)),
+    url(/image/phongkham1.jpg);
+    background-size: cover;
+    background-position: center;
+    height:100vh;
+}
+.container {
+    padding:0px;
+    margin: 40px auto auto auto;
+
+}
+.grid {
+    width: 1200px;
+    max-width: 100%;
+    margin:0 auto;
+
+}
+.category {
+    width:100%;
+    color: white;
+}
+.category_heading {
+    font-size: 2rem;
+    background-color: var(--categeory);
+    text-align: center;
+    padding: 15px 16px;
+    color: white;
+    font-weight: 700;
+
+}
+.category-list {
+    list-style: none;
+    padding: 0;
+    font-size: 1.6rem;
+}
+.category-item span {
+    padding:5px 20px;
+    border-bottom: 2px solid rgb(3, 37, 76);
+    cursor: pointer;
+    width: 100%;
+    background-color: var(--category-list);
+    display: block;
+    border-radius: 2px;
+}
+.category-item span:hover {
+    color:burlywood;
+}
+.category-item-list {
+    padding: 0;
+    list-style: none;
+    width:90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    display:none;
+
+}
+.category-item-list-item {
+    padding:5px 15px;
+    border-bottom: 1px solid rgb(3, 37, 76);
+    height:100%;
+    transition: right linear 0.1s;
+    right:0;
+    position: relative;
+    background-color:rgba(17, 103, 177,0.7);
+    border-radius: 3px;
+    cursor: pointer;
+
+}
+.category-item-list-item:hover {
+    color:darkolivegreen;
+    right:-4px;
+}
+.name-item.category-item--active~.category-item-list {
+    display:block;
+}
+.content {
+    width: 100%;
+    height: 600px;
+    background-color: rgb(221, 216, 216);
+}
+li a{
+    color: white;
+}
+li a:hover {
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    color:darkolivegreen;
+}
+h4 {
+    margin-bottom: 5px;
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+.content {
+    overflow-y: scroll;
+    padding: 7px;
+}
+/* Danh sach */
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+}
+.table_header {
+    font-size: 1.4rem;
+}
+.table_row {
+    font-size: 1.3rem;
+    color: rgb(119, 21, 21);
+    font-weight: 500;
+    padding-top:5px;
+    padding-bottom: 5px;
+}
+.table_row td:last-child{
+    background-color: rgb(218, 193, 51);
+    color:white;
+    border: 1px solid black;
+    width: 110px;
+    padding: 3px;
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/danhsachBN_YT.css">
+    <link rel="stylesheet" href="/css/timkiem.css">
+    <title>Phong Kham</title>
+</head>
+
+<body>
+<div class="container">
+    <div class="grid">
+        <div th:replace="fragments/header.html :: header"></div>
+        <div class="row">
+            <div th:replace="fragments/navigation.html :: navigation"></div>
+            <div class="col-sm-10">
+                <div class="content">
+                    <th:block th:if ="${ytas}">
+                        <h4> Danh Sách Y Tá Trong Phòng Khám</h4>
+                        <table style="width:100%" class="table">
+                            <tr class = "table_header">
+                                <th>Mã Y Tá</th>
+                                <th>Họ Tên</th>
+                                <th>Địa Chỉ</th>
+                                <th>Trình Độ</th>
+                                <th>Ngày Sinh</th>
+                                <th></th>
+                            </tr>
+                            <th:block th:each="yta : ${ytas}">
+                                <tr class = "table_row">
+                                    <td th:text="${yta.maNV}"></td>
+                                    <td th:text="${yta.hoTen}"></td>
+                                    <td th:text="${yta.diaChi}"></td>
+                                    <td th:text="${yta.trinhDo}"></td>
+                                    <td th:text="${#dates.format(yta.getNgaySinh(), 'yyyy-MM-dd')}"></td>
+                                    <td>
+                                        <a th:href="@{'/yta/sua/'+${yta.id}}">Sủa</a>
+                                        <a th:href="@{'/yta/xoa/'+${yta.id}}">Xóa</a>
+                                    </td>
+                                </tr>
+                            </th:block>
+                        </table>
+                    </th:block>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="/js/base.js"></script>
+</body>

@@ -1,0 +1,32 @@
+/* -----------------------------------Thanh Cong------------------------------------- */
+.label_item {
+    font-size: 1.7rem;
+    color: black;
+    display: inline-block;
+    min-width: 120px;
+    font-weight: 700;
+}
+.value_item {
+    font-size: 1.7rem;
+    color: rgb(18, 138, 18);
+    display: inline-block;
+}
+.content div{
+    margin: auto;
+    width: 300px;
+    margin-top: 10px;
+}
+.a_submit,.a_submit:hover {
+    font-size: 1.6rem;
+    width: 70px;
+    height: 30px;
+    margin: auto;
+    display: inline-block;
+    margin-top: 5px;
+    text-decoration: none;
+    color: black;
+    background-color: chocolate;
+    text-align: center;
+    height: 100%;
+    margin-left: 30px;
+}

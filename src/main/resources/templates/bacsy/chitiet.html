@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/thanhcong.css">
+    <title>Phong Kham</title>
+</head>
+
+<body>
+<div class="container">
+    <div class="grid">
+        <div th:replace="fragments/header.html :: header"></div>
+        <div class="row">
+            <div th:replace="fragments/navigation.html :: navigation"></div>
+            <div class="col-sm-10">
+                <div class="content">
+                    <h4> Chi Tiết Bác Sỹ</h4>
+
+                    <div>
+                        <span class="label_item">Mã Bác SỸ:</span>
+                        <span class="value_item" th:text="${bacsy.maNV}"></span>
+                    </div>
+                    <div>
+                        <span class="label_item">Họ Tên:</span>
+                        <span class="value_item" th:text="${bacsy.hoTen}"></span>
+                    </div>
+                    <div>
+                        <span class="label_item">Quê Quán:</span>
+                        <span class="value_item" th:text="${bacsy.diaChi}"></span>
+                    </div>
+                    <div>
+                        <span class="label_item">Trình Độ</span>
+                        <span class="value_item" th:text="${bacsy.trinhDo}"></span>
+                    </div>
+                    <div>
+                        <span class="label_item"> Chuyên Môn</span>
+                        <span class="value_item" th:text="${bacsy.chuyenMon}"></span>
+                    </div>
+                    <div>
+                        <span class="label_item">Thâm Niên:</span>
+                        <span class="value_item" th:text="${bacsy.thamNien}"></span>
+                    </div>
+                    <div>
+                        <span class="label_item">Ngày Sinh:</span>
+                        <span class="value_item" th:text="${#dates.format(bacsy.getNgaySinh(), 'yyyy-MM-dd')}"></span>
+                    </div>
+                    <div>
+                        <span class="label_item">CMT:</span>
+                        <span class="value_item" th:text="${bacsy.cmt}"></span>
+                    </div>
+                    <div>
+                        <span class="label_item">SĐT:</span>
+                        <span class="value_item" th:text="${bacsy.sdt}">0968790350</span>
+                    </div>
+                    <div>
+                        <a class = "a_submit" th:href="@{'/bacsy/sua/'+${bacsy.id}}">Sửa</a>
+                        <a class = "a_submit" th:href="@{'/bacsy/xoa/'+${bacsy.id}}">Xóa</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/base.js"></script>
+</body>

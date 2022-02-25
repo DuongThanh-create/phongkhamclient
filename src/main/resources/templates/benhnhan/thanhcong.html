@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/thanhcong.css">
+    <title>Phong Kham</title>
+</head>
+
+<body>
+<div class="container">
+    <div class="grid">
+        <div th:replace="fragments/header.html :: header"></div>
+        <div class="row">
+            <div th:replace="fragments/navigation.html :: navigation"></div>
+            <div class="col-sm-10">
+                <div class="content">
+                    <h4> THÊM Bệnh Nhân Thành Công</h4>
+
+                    <div>
+                        <span class="label_item">Mã Bệnh Nhân:</span>
+                        <span class="value_item" th:text="${benhnhan.maBN}"></span>
+                    </div>
+                    <div>
+                        <span class="label_item">Họ Tên:</span>
+                        <span class="value_item" th:text="${benhnhan.hoTen}"></span>
+                    </div>
+                    <div>
+                        <span class="label_item">Địa Chỉ:</span>
+                        <span class="value_item" th:text="${benhnhan.diaChi}"></span>
+                    </div>
+                    <div>
+                        <span class="label_item">Ngày Sinh:</span>
+                        <span class="value_item" th:text="${#dates.format(benhnhan.getNgaySinh(), 'yyyy-MM-dd')}"></span>
+                    </div>
+                    <div>
+                        <span class="label_item">CMT:</span>
+                        <span class="value_item" th:text="${benhnhan.cmt}"></span>
+                    </div>
+                    <div>
+                        <span class="label_item">SĐT:</span>
+                        <span class="value_item" th:text="${benhnhan.sdt}">0968790350</span>
+                    </div>
+                    <div>
+                        <a class = "a_submit" th:href="@{'/benhnhan/sua/'+${benhnhan.id}}">Sửa</a>
+                        <a class = "a_submit" th:href="@{'/benhnhan/xoa/'+${benhnhan.id}}">Xóa</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/base.js"></script>
+</body>

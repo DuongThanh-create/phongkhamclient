@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/thanhcong.css">
+    <title>Phong Kham</title>
+</head>
+
+<body>
+<div class="container">
+    <div class="grid">
+        <div th:replace="fragments/header.html :: header"></div>
+        <div class="row">
+            <div th:replace="fragments/navigation.html :: navigation"></div>
+            <div class="col-sm-10">
+                <div class="content">
+                    <h4> Chi Tiết Lần Khám</h4>
+                    <div>
+                        <span class="label_item">Mã Lần Khám:</span>
+                        <span class="value_item" th:text="${lankham.maLanKham}"></span>
+                    </div>
+                    <div>
+                        <span class="label_item">Ngày Vào Viện:</span>
+                        <span class="value_item" th:text="${#dates.format(lankham.getNgayVaoVien(), 'yyyy-MM-dd')}"></span>
+                    </div>
+                    <div>
+                        <span class="label_item">Ngày Ra Viện:</span>
+                        <span class="value_item" th:text="${#dates.format(lankham.getNgayRaVien(), 'yyyy-MM-dd')}"></span>
+                    </div>
+                    <div>
+                        <span class="label_item">Bác Sỹ</span>
+                        <span class="value_item" th:text="${lankham.getBacSy().hoTen}"></span>
+                    </div>
+                    <div>
+                        <span class="label_item">Y Tá:</span>
+                        <span class="value_item" th:text="${lankham.getYTa().hoTen}"></span>
+                    </div>
+                    <div>
+                        <span class="label_item">Bệnh:</span>
+                        <span class="value_item" th:text="${lankham.getBenh().benh}"></span>
+                    </div>
+                    <div>
+                        <span class="label_item">Bệnh Nhân:</span>
+                        <span class="value_item" th:text="${lankham.getBenhNhan().hoTen}"></span>
+                    </div>
+                    <th:block th:if="${lankham.getDieuTri()}!=null">
+                        <div>
+                            <span class="label_item">Điều Trị:</span>
+                        </div>
+                        <th:block th:if="${lankham.getDieuTri().getDieuTri_Thuocs()}!=null">
+                            <table>
+                                <tr>
+                                    <th>Tên Thuốc</th>
+                                    <th>Số Lượng</th>
+                                </tr>
+                                <th:block th:each="thuoc : ${lankham.getDieuTri().getDieuTri_Thuocs()}">
+                                    <tr>
+                                        <td th:text="${thuoc.getThuoc().tenThuoc}">"</td>
+                                        <td th:text="${thuoc.getSoLuong()}"></td>
+                                    </tr>
+                                </th:block>
+                            </table>
+                            <div>
+                                <span class="label_item">Cách dùng:</span>
+                                <span class="value_item" th:text="${lankham.getDieuTri().getCachDung()}"></span>
+                            </div>
+                        </th:block>
+                    </th:block>
+                    <div>
+                        <a class = "a_submit" th:href="@{'/lankham/sua/'+${lankham.id}}">Sửa</a>
+                        <a class = "a_submit" th:href="@{'/lankham/xoa/'+${lankham.id}}">Xóa</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/base.js"></script>
+</body>

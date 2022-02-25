@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/danhsachBN_YT.css">
+    <title>Phong Kham</title>
+</head>
+
+<body>
+<div class="container">
+    <div class="grid">
+        <div th:replace="fragments/header.html :: header"></div>
+        <div class="row">
+            <div th:replace="fragments/navigation.html :: navigation"></div>
+            <div class="col-sm-10">
+                <div class="content">
+                    <th:block th:if ="${benhnhans}">
+                        <h4> Danh Sách Bệnh Nhân Trong Phòng Khám</h4>
+                        <table style="width:100%">
+                            <tr class = "table_header">
+                                <th>Mã Bệnh Nhân</th>
+                                <th>Họ Tên</th>
+                                <th>Địa Chỉ</th>
+                                <th>SĐT</th>
+                                <th>Ngày Sinh</th>
+                                <th></th>
+                            </tr>
+                            <th:block th:each="benhnhan : ${benhnhans}">
+                                <tr class = "table_row">
+                                    <td th:text="${benhnhan.maBN}"></td>
+                                    <td th:text="${benhnhan.hoTen}"></td>
+                                    <td th:text="${benhnhan.diaChi}"></td>
+                                    <td th:text="${benhnhan.sdt}"></td>
+                                    <td th:text="${#dates.format(benhnhan.getNgaySinh(), 'yyyy-MM-dd')}"></td>
+                                    <td>
+                                        <a th:href="@{'/benhnhan/sua/'+${benhnhan.id}}">Sủa</a>
+                                        <a th:href="@{'/benhnhan/xoa/'+${benhnhan.id}}">Xóa</a>
+                                    </td>
+                                </tr>
+                            </th:block>
+                        </table>
+                    </th:block>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="/js/base.js"></script>
+</body>

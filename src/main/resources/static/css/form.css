@@ -1,0 +1,25 @@
+/* ______________________________________Trang Them Bac Sy_________________________________________ */
+form {
+    display: block;
+    margin:auto;
+    width: 300px;
+}
+.lable_value {
+    font-size: 1.6rem;
+    min-width: 150px;
+    margin-bottom: 3px;
+}
+.input_value input {
+    width: 100%;
+    font-size: 1.4rem;
+    height: 25px;
+    margin-bottom: 7px;
+}
+.input_submit input{
+    font-size: 1.6rem;
+    min-width: 90px;
+    height: 30px;
+    margin: auto;
+    display: block;
+    margin-top: 5px;
+}

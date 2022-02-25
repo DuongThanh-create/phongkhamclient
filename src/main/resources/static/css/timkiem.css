@@ -1,0 +1,25 @@
+/* -----------------------------form tim kiem----------------------------- */
+.form_timkiem {
+    width: 300px;
+    display: block;
+    margin: auto;
+}
+.form_timkiem div {
+    display: flex;
+    align-items: center;
+}
+.form_timkiem div input {
+    width: 120px;
+    height: 100%;
+    font-size: 1.4rem;
+    margin-left: 5px;
+}
+.form_timkiem div select {
+    width: 90px;
+    height: 100%;
+    font-size: 1.4rem;
+    margin-left: 5px;
+}
+.form_timkiem div input[type="text"] {
+    flex: 1;
+}

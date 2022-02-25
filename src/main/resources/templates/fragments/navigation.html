@@ -1,0 +1,91 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="col-sm-2" th:fragment="navigation">
+    <nav class="category">
+        <ul class="category-list">
+            <li class="category-item">
+                <span class="name-item">Bác sỹ</span>
+                <ul class="category-item-list">
+                    <li class="category-item-list-item index0">
+                        <a th:href="@{/bacsy/all}">Danh Sách</a>
+                    </li>
+                    <li class="category-item-list-item index0">
+                        <a th:href="@{/bacsy/them}">Thêm Bác Sỹ</a>
+                    </li>
+                    <li class="category-item-list-item">
+                        <a th:href="@{/bacsy/timkiem}">Tim Kiếm Bác Sỹ</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="category-item">
+                <span class="name-item">Y Tá</span>
+                <ul class="category-item-list">
+                    <li class="category-item-list-item index0">
+                        <a th:href="@{/yta/all}">Danh Sách</a>
+                    </li>
+                    <li class="category-item-list-item index3">
+                        <a th:href="@{/yta/them}">Thêm Y Tá</a>
+                    </li>
+                    <li class="category-item-list-item">
+                        <a th:href="@{/yta/timkiem}">Tim Kiếm Y Tá</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="category-item">
+                <span class="name-item">Bệnh Nhân</span>
+                <ul class="category-item-list">
+                    <li class="category-item-list-item index0">
+                        <a th:href="@{/benhnhan/all}">Danh Sách</a>
+                    </li>
+                    <li class="category-item-list-item index6">
+                        <a th:href="@{/benhnhan/them}">Thêm Bệnh Nhân</a>
+                    </li>
+                    <li class="category-item-list-item">
+                        <a th:href="@{/benhnhan/timkiem}">Tìm Kiếm Bệnh Nhân</a>
+                    </li>
+
+                </ul>
+            </li>
+            <li class="category-item">
+                <span class="name-item">Thuốc</span>
+                <ul class="category-item-list">
+                    <li class="category-item-list-item index9">
+                        <a th:href="@{/thuoc/all}">Danh Sach</a>
+                    </li>
+                    <li class="category-item-list-item index9">
+                        <a th:href="@{/thuoc/them}">Thêm Thuốc</a>
+                    </li>
+                    <li class="category-item-list-item">
+                        <a th:href="@{/thuoc/timkiem}">Tìm Kiếm</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="category-item">
+                <span class="name-item">Lần Khám</span>
+                <ul class="category-item-list">
+                    <li class="category-item-list-item index0">
+                        <a th:href="@{/lankham/all}">Danh Sách</a>
+                    </li>
+                    <li class="category-item-list-item index9">
+                        <a th:href="@{/lankham/them}">Thêm Lần Khám</a>
+                    </li>
+                    <li class="category-item-list-item index9">
+                        <a th:href="@{/lankham/timkiem}">Tìm Kiếm Lần Khám</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="category-item">
+                <span class="name-item">Chức năng khác</span>
+                <ul class="category-item-list">
+                    <li class="category-item-list-item index12">
+                        <a th:href="@{/thongke/benh}">Thống kê bệnh</a>
+                    </li>
+                    <li class="category-item-list-item index12">
+                        <a th:href="@{/luong}">Tính Lương</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</div>
+</body>

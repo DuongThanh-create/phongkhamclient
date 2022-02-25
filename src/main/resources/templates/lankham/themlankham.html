@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/lankham/lankham.css">
+    <title>Phong Kham</title>
+</head>
+
+<body>
+<div class="container">
+    <div class="grid">
+        <div th:replace="fragments/header.html :: header"></div>
+        <div class="row">
+            <div th:replace="fragments/navigation.html :: navigation"></div>
+            <div class="col-sm-10">
+                <div class="content">
+                    <h4> Thêm Lần Khám</h4>
+                    <form th:action="@{/lankham/them}" th:method="post">
+                        <div class="lable_value">Mã Lần Khám:</div>
+                        <div class="input_value">
+                            <input type="text" name="malankham">
+                        </div>
+                        <div class="lable_value">Ngày Vào Viện:</div>
+                        <div class="input_value">
+                            <input type="date" name="ngayvaovien" value="2020-01-01">
+                        </div>
+                        <div class="lable_value">Ngày Ra Viện:</div>
+                        <div class="input_value">
+                            <input type="date" name="ngayravien" value="2020-01-01">
+                        </div>
+                        <div class="lable_value">Chọn Bác Sỹ:</div>
+                        <div class="input_value">
+                            <select name="bacsy">
+                                <th:block th:each="bacsy : ${bacsys}">
+                                    <option th:value="${bacsy.id}" th:text="${bacsy.hoTen}"></option>
+                                </th:block>
+                            </select>
+                        </div>
+                        <div class="lable_value">Chọn Y Tá:</div>
+                        <div class="input_value">
+                            <select name="yta">
+                                <th:block th:each="yta : ${ytas}">
+                                    <option th:value="${yta.id}" th:text="${yta.hoTen}"></option>
+                                </th:block>
+                            </select>
+                        </div>
+                        <div class="lable_value">Chọn Bệnh Nhân:</div>
+                        <div class="input_value">
+                            <select name="benhnhan">
+                                <th:block th:each="benhnhan : ${benhnhans}">
+                                    <option th:value="${benhnhan.id}" th:text="${benhnhan.maBN}"></option>
+                                </th:block>
+                            </select>
+                        </div>
+                        <div class="lable_value">Chọn Bệnh:</div>
+                        <div class="input_value">
+                            <select name="benh">
+                                <th:block th:each="benh : ${benhs}">
+                                    <option th:value="${benh.id}" th:text="${benh.benh}"></option>
+                                </th:block>
+                            </select>
+                        </div>
+                        <div class="lable_value">Phần Điều Trị:</div>
+                        <div>
+                            <span class="value_thuoc_name">Chọn thuốc:</span>
+                            <span class="value_thuoc">Số Lượng</span>
+                        </div>
+                        <div>
+                            <select name="thuoc" class="value_thuoc_name thuoc">
+                                <th:block th:each="thuoc : ${thuocs}">
+                                    <option th:value="${thuoc.id}" th:text="${thuoc.tenThuoc}"></option>
+                                </th:block>
+                            </select>
+                            <input type="text" class="value_thuoc so_luong">
+                            <span class="add button">Add</span>
+                        </div>
+                        <div class="dsthuoc">
+
+                        </div>
+                        <div  class="value_thuoc_name">Cách Dùng:</div>
+                        <div class="input_value">
+                            <textarea name="cachdung" rows="4"></textarea>
+                        </div>
+                        <div class="input_submit">
+                            <input type="submit" value="Submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="/js/base.js"></script>
+<script src="/js/lankham/lankham.js"></script>
+</body>
